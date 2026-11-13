@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Matias ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #071b38, #123f70, #791d36);
+    color: white;
+    overflow-x: hidden;
+}
+
+.fondo {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.corazon {
+    position: absolute;
+    bottom: -40px;
+    color: #ffffff55;
+    font-size: 22px;
+    animation: flotar 9s linear infinite;
+}
+
+.corazon:nth-child(1) { left: 10%; }
+.corazon:nth-child(2) { left: 30%; animation-delay: 2s; }
+.corazon:nth-child(3) { left: 55%; animation-delay: 4s; }
+.corazon:nth-child(4) { left: 75%; animation-delay: 1s; }
+.corazon:nth-child(5) { left: 90%; animation-delay: 3s; }
+
+@keyframes flotar {
+    0% { transform: translateY(0); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+.contenedor {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 850px;
+    margin: auto;
+    padding: 45px 0;
+    text-align: center;
+}
+
+.etiqueta {
+    letter-spacing: 4px;
+    font-size: 12px;
+    color: #ffdce7;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: clamp(38px, 8vw, 65px);
+    text-shadow: 0 4px 20px #0006;
+}
+
+.subtitulo {
+    color: #e5eafa;
+    margin: 12px 0 30px;
+}
+
+.sobre {
+    position: relative;
+    width: 190px;
+    height: 130px;
+    margin: 40px auto 20px;
+    background: #d93458;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 12px 30px #0005;
+}
+
+.tapa {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 95px solid transparent;
+    border-right: 95px solid transparent;
+    border-top: 75px solid #f36b87;
+}
+
+.papel {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: 150px;
+    height: 100px;
+    background: #fff4f6;
+    border-radius: 5px;
+}
+
+.corazon-sobre {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    right: 0;
+    font-size: 28px;
+}
+
+.instruccion {
+    color: #f8dce5;
+    margin: 18px 0;
+}
+
+.boton-principal {
+    border: none;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: linear-gradient(120deg, #d93458, #a91f45);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.firma {
+    margin-top: 28px;
+    color: #f6dce5;
+    font-size: 14px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    background: #020b1ddd;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+}
+
+.modal-contenido {
+    background: #fff8fb;
+    color: #173456;
+    width: 100%;
+    max-width: 420px;
+    padding: 30px 24px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 12px 40px #0006;
+    animation: aparecer .3s ease;
+}
+
+@keyframes aparecer {
+    from { transform: scale(.85); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-contenido h2 {
+    color: #b52e50;
+    margin-bottom: 15px;
+}
+
+.modal-contenido p {
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.boton-modal {
+    border: none;
+    background: #d93458;
+    color: white;
+    padding: 11px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.cartas {
+    display: none;
+    margin-top: 55px;
+}
+
+.cartas h2 {
+    font-size: 27px;
+    margin-bottom: 8px;
+}
+
+.cartas > p {
+    color: #e1e9f7;
+    margin-bottom: 25px;
+}
+
+.rejilla {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.tarjeta {
+    min-height: 115px;
+    padding: 20px 12px;
+    border: 1px solid #ffffff55;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #ffffff, #e7efff);
+    color: #173456;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 18px #0003;
+    transition: transform .2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+/* REPRODUCTOR DE MUSICA */
+
+.reproductor-musica {
+    width: 100%;
+    max-width: 390px;
+    margin: 25px auto 0;
+    padding: 15px;
+    border-radius: 16px;
+    background: linear-gradient(120deg, #f9e7ef, #e4edff);
+    color: #173456;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 20px #0004;
+}
+
+.icono-musica {
+    font-size: 27px;
+}
+
+.info-musica {
+    flex: 1;
+    text-align: left;
+}
+
+.info-musica strong,
+.info-musica small {
+    display: block;
+}
+
+.info-musica strong {
+    color: #b52e50;
+    font-size: 14px;
+}
+
+.info-musica small {
+    color: #52627a;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.boton-musica {
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    background: #d93458;
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.boton-musica:active {
+    transform: scale(.92);
+}
+
+.nota-musica {
+    color: #e5eafa;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+    .contenedor { padding: 35px 0; }
+    .rejilla { gap: 10px; }
+    .tarjeta {
+        min-height: 105px;
+        font-size: 13px;
+        padding: 15px 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="fondo">
+    <span class="corazon">♥</span>
+    <span class="corazon">♡</span>
+    <span class="corazon">♥</span>
+    <span class="corazon">♡</span>
+    <span class="corazon">♥</span>
+</div>
+
+<main class="contenedor">
+
+    <div class="etiqueta">UN DETALLITO PARA TI</div>
+
+    <h1>Matias ❤️</h1>
+
+    <p class="subtitulo">
+        Preparé algo pequeño, pero con mucho cariño.
+    </p>
+
+    <div class="sobre" onclick="abrirCarta()">
+        <div class="papel"></div>
+        <div class="tapa"></div>
+        <div class="corazon-sobre">❤️</div>
+    </div>
+
+    <p class="instruccion">
+        Hay una pequeña sorpresa esperándote...
+    </p>
+
+    <button class="boton-principal" onclick="abrirCarta()">
+        Abrir mi sorpresa ♥
+    </button>
+
+    <div class="firma">Hecho con cariño para ti 💗</div>
+
+    <section class="cartas" id="cartas">
+
+        <h2>Un poquito de lo que siento 💙</h2>
+        <p>Abre cada cartita, tengo algo que decirte.</p>
+
+        <div class="rejilla">
+
+            <button class="tarjeta" onclick="mostrarMensaje(0)">
+                💌<br>Un recordatorio
+            </button>
+
+            <button class="tarjeta" onclick="mostrarMensaje(1)">
+                ❤️<br>Algo que siento
+            </button>
+
+            <button class="tarjeta" onclick="mostrarMensaje(2)">
+                ⭐<br>Para tus días difíciles
+            </button>
+
+            <button class="tarjeta" onclick="mostrarMensaje(3)">
+                💙<br>Mis deseos para ti
+            </button>
+
+            <button class="tarjeta" onclick="mostrarMensaje(4)">
+                🫶<br>Un pequeño secreto
+            </button>
+
+            <button class="tarjeta" onclick="mostrarMensaje(5)">
+                💗<br>Todavía tengo mucho que decirte
+            </button>
+
+        </div>
+
+        <!-- SEPTIMA TARJETA DE MUSICA -->
+
+        <div class="reproductor-musica">
+
+            <div class="icono-musica">🎵</div>
+
+            <div class="info-musica">
+                <strong>Una canción para ti, Mor</strong>
+                <small>Labios Rotos ❤️</small>
+            </div>
+
+            <button
+                class="boton-musica"
+                id="botonMusica"
+                type="button"
+                onclick="alternarMusica()"
+                aria-label="Reproducir música">
+                ▶
+            </button>
+
+        </div>
+
+        <p class="nota-musica" id="estadoMusica">
+            Presiona ▶ para escuchar nuestra canción 🎧
+        </p>
+
+        <audio id="audioMusica" preload="auto" loop>
+            <source
+                src="./Labios%20Rotos%28M4A_128K%29.m4a.mp3"
+                type="audio/mpeg">
+        </audio>
+
+    </section>
+
+</main>
+
+<!-- BIENVENIDA -->
+
+<div class="modal" id="ventana">
+
+    <div class="modal-contenido">
+
+        <h2>Hola, Mor ❤️</h2>
+
+        <p>
+            Quería hacerte un detallito diferente.
+            Tal vez no sea algo grande, pero cada parte
+            está hecha pensando en ti.
+        </p>
+
+        <p>
+            Espero que te guste y que disfrutes cada cartita. 💗
+        </p>
+
+        <button class="boton-modal" onclick="irCartas()">
+            Quiero descubrirlas ♥
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MENSAJES -->
+
+<div class="modal" id="mensajeVentana">
+
+    <div class="modal-contenido">
+
+        <h2 id="tituloMensaje"></h2>
+
+        <p id="textoMensaje"></p>
+
+        <button class="boton-modal" onclick="cerrarMensaje()">
+            Cerrar 💗
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+// MENSAJES DE LAS CARTITAS
+
+const mensajes = [
+    {
+        titulo: "Un recordatorio 💌",
+        texto: "Quiero que nunca olvides lo importante que eres para mí. Me alegra tenerte en mi vida y compartir tantos momentos contigo. Eres alguien muy especial y espero que nunca dudes de eso."
+    },
+    {
+        titulo: "Algo que siento ❤️",
+        texto: "A veces no encuentro las palabras exactas para explicar todo lo que siento por ti. Solo sé que me haces feliz, que disfruto cada momento a tu lado y que me encanta tenerte en mi vida."
+    },
+    {
+        titulo: "Para tus días difíciles ⭐",
+        texto: "Cuando tengas un día complicado, recuerda que no tienes que poder con todo siempre. Confío en ti, en lo que eres y en todo lo que puedes lograr. Deseo que nunca te falten motivos para seguir adelante."
+    },
+    {
+        titulo: "Mis deseos para ti 💙",
+        texto: "Deseo que cumplas cada una de tus metas, que tengas muchas oportunidades y que la vida te regale momentos bonitos. Siempre voy a querer verte feliz y orgulloso de todo lo que consigas."
+    },
+    {
+        titulo: "Un pequeño secreto 🫶",
+        texto: "Tal vez no te lo diga a cada rato, pero hay muchísimos pequeños detalles tuyos que me hacen feliz. Tu forma de ser, tus palabras y esos momentos sencillos que compartimos significan mucho para mí."
+    },
+    {
+        titulo: "Todavía tengo mucho que decirte 💗",
+        texto: "Esta es solo una pequeña parte de todo lo que quisiera expresarte. Gracias por estar en mi vida, por los momentos compartidos y por ser tú. Te quiero muchísimo, Mor. ❤️"
+    }
+];
+
+// ELEMENTOS DE MUSICA
+
+const audio = document.getElementById("audioMusica");
+const botonMusica = document.getElementById("botonMusica");
+const estadoMusica = document.getElementById("estadoMusica");
+
+// ACTUALIZAR BOTON
+
+audio.addEventListener("play", function() {
+    botonMusica.textContent = "Ⅱ";
+    botonMusica.setAttribute("aria-label", "Pausar música");
+    estadoMusica.textContent = "Reproduciendo nuestra canción ❤️";
+});
+
+audio.addEventListener("pause", function() {
+    botonMusica.textContent = "▶";
+    botonMusica.setAttribute("aria-label", "Reproducir música");
+    estadoMusica.textContent = "Canción pausada. Presiona para continuar 🎵";
+});
+
+// DETECTAR SI HAY PROBLEMAS CON EL ARCHIVO
+
+audio.addEventListener("error", function() {
+    botonMusica.textContent = "▶";
+    estadoMusica.textContent = "No se pudo cargar la canción. Revisa el archivo de audio.";
+});
+
+// FUNCION PRINCIPAL DEL BOTON
+
+async function alternarMusica() {
+
+    if (audio.paused) {
+
+        estadoMusica.textContent = "Cargando canción...";
+
+        try {
+            await audio.play();
+        } catch (error) {
+            botonMusica.textContent = "▶";
+            estadoMusica.textContent =
+                "No se pudo reproducir. Comprueba que el archivo esté junto a index.html.";
+            console.error("Error de reproducción:", error);
+        }
+
+    } else {
+
+        audio.pause();
+
+    }
+}
+
+// SOBRE DE BIENVENIDA
+
+function abrirCarta() {
+
+    document.getElementById("ventana").style.display = "flex";
+
+    const audio = document.getElementById("audioMusica");
+
+    if (audio.paused) {
+        audio.play().catch(error => {
+            console.log("No se pudo iniciar la música:", error);
+        });
+    }
+}
+
+function cerrarCarta() {
+    document.getElementById("ventana").style.display = "none";
+}
+
+function irCartas() {
+
+    cerrarCarta();
+
+    const seccion = document.getElementById("cartas");
+
+    seccion.style.display = "block";
+
+    setTimeout(function() {
+        seccion.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+}
+
+// ABRIR MENSAJES
+
+function mostrarMensaje(numero) {
+
+    document.getElementById("tituloMensaje").textContent =
+        mensajes[numero].titulo;
+
+    document.getElementById("textoMensaje").textContent =
+        mensajes[numero].texto;
+
+    document.getElementById("mensajeVentana").style.display = "flex";
+}
+
+// CERRAR MENSAJES
+
+function cerrarMensaje() {
+    document.getElementById("mensajeVentana").style.display = "none";
+}
+
+// CERRAR AL TOCAR FUERA
+
+document.getElementById("ventana").addEventListener("click", function(event) {
+    if (event.target === this) {
+        cerrarCarta();
+    }
+});
+
+document.getElementById("mensajeVentana").addEventListener("click", function(event) {
+    if (event.target === this) {
+        cerrarMensaje();
+    }
+});
+
+</script>
+
+</body>
+</html>
